@@ -55,6 +55,24 @@ public class Profil {
     }
 
     private void resultIMG(){
+        Integer min;
+        Integer max;
+        if(sexe == 0) { //femme
+            min = minFemme;
+            max = maxFemme;
+        }else{
+            min = minHomme;
+            max = maxHomme;
 
+        }
+
+        message = "normal";
+        if(img < min){
+            message = "trop faible";
+        }else{
+            if (img > max){
+                message = "trop elever";
+            }
+        }
     }
 }

@@ -5,6 +5,8 @@ import android.content.Context;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import com.example.coach.modele.Profil;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -17,10 +19,21 @@ import static org.junit.Assert.*;
  */
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
+
+
+    // creation profole
+    private Profil profil= new Profil(67, 165, 35 ,0);
+    private float img=(float)32.4;
+    private String message="trop elever";
     @Test
-    public void useAppContext() {
-        // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.example.coach", appContext.getPackageName());
+    void testGetImg() {
+        assertEquals(img, profil.getImg(), (float)0.1);    }
+@Test
+    void testGetMessage() {
+        assertEquals(message,profil.getMessage() );
     }
 }
+
+
+
+
