@@ -23,6 +23,8 @@ public class Profil {
         this.taille = taille;
         this.age = age;
         this.sexe = sexe;
+        this.calculIMG();
+        this.resultIMG();
     }
 
     public Integer getPoids() {
