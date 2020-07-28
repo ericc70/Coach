@@ -17,5 +17,6 @@ public class ProfilTest extends groovy.util.GroovyTestCase {
 @Test
     void testGetMessage() {
         assertEquals(message,profil.getMessage() );
+
     }
 }
