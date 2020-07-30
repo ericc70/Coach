@@ -21,13 +21,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
-        this.controle = Controle.getInstance();
+
     }
     //propriete
     private EditText txtPoids;
     private EditText txtTaille;
     private EditText txtAge;
     private RadioButton rdHomme;
+    private RadioButton rdFemme;
     private TextView lblIMG;
     private ImageView imgSmiley;
     private Controle controle;
@@ -41,9 +42,12 @@ public class MainActivity extends AppCompatActivity {
         txtTaille = (EditText) findViewById(R.id.txtTaille);
         txtAge = (EditText) findViewById(R.id.txtAge);
         rdHomme = (RadioButton) findViewById(R.id.rdHomme);
+        rdFemme = (RadioButton) findViewById(R.id.rdFemme);
         lblIMG = (TextView) findViewById(R.id.lblIMG);
         imgSmiley = (ImageView) findViewById(R.id.imgSmiley);
+        this.controle = Controle.getInstance(this);
         ecouteCalcul();
+        recupProfil();
 
     }
 
@@ -90,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
              * @param sexe
              */
             private void afficheResult(Integer poids, Integer taille, Integer age, Integer sexe){
-                this.controle.creerProfil(poids,taille,age,sexe);
+                this.controle.creerProfil(poids,taille,age,sexe, this);
                 float img = this.controle.getImg();
                 String message = this.controle.getMessage();
                 if (message=="normal"){
@@ -113,5 +117,23 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * reciperation profil si il a ete initialise
+     */
+    private void recupProfil(){
+        if(controle.getPoids() != null){
+            txtPoids.setText(controle.getPoids().toString());
+            txtTaille.setText(controle.getTaille().toString());
+            txtAge.setText(controle.getAge().toString());
+            rdFemme.setChecked(true);
+            if(controle.getSexe() ==1 ){
+                rdHomme.setChecked(true);
+            }
+
+            //simule le clic sur le bitton calcul
+            ((Button) findViewById(R.id.btnCalc)).performClick();
+        }
+
+    }
 
 }
